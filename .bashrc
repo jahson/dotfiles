@@ -86,7 +86,7 @@ case $(id -u) in
 esac
 export ENDCOLOUR="\[\e[0m\]"
 
-PS1='\[\e[0;36m\][\t] \[\e[0;37m\]\u@\h:'$STARTCOLOUR'$PWD'$ENDCOLOUR' \[\e[0;35m\]$(__git_ps1 "(%s)") \[\e[0m\]\$ ' 
+PS1='\[\e[0;36m\][\t] \[\e[0;37m\]\u@\h:'$STARTCOLOUR'$PWD'$ENDCOLOUR' \[\e[0;35m\]$(vcprompt)\[\e[0m\]\$ ' 
 #}}}
 
 # Directory colours {{{

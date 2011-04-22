@@ -26,6 +26,13 @@ alias ..="cd .."
 alias ...="cd .. ; cd .."
 alias rrf="rm -rf"
 alias cpr="cp -r"
+# git aliases
+alias gs="git status"
+alias ga="git add "
+alias gb="git branch "
+alias gc="git commit"
+alias gd="git diff"
+alias go="git checkout "
 # auto-sudo for some commands {{{
 alias port="sudo port"
 alias pecl="sudo pecl"
