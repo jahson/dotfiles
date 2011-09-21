@@ -5,7 +5,7 @@
 # outputting anything in those cases.
 if [[ $- != *i* ]]
 then
-	# Shell is non-interactive.  Be done now!
+	# Shell is non-interactive.
 	return
 fi
 
@@ -50,11 +50,10 @@ then
 	source ~/.completion.svn.sh
 fi
 #}}}
-
 # Load aliases script {{{
-if [[ -f ~/.bash_aliases ]]
+if [[ -f ~/.aliases.bash ]]
 then
-	. ~/.bash_aliases
+	. ~/.aliases.bash
 fi
 #}}}
 
@@ -67,29 +66,40 @@ export HISTCONTROL=ignoreboth
 export HISTIGNORE="ls:cd:[bf]g:exit:..:...:ll:lla""]"
 #}}}
 
-# Colours
+# Colors {{{
 export CLICOLOR=1
 set TERM xterm-256color; export TERM
-# coloured grep output
+# colored grep output
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
+# colors for man
+man() {
+	env \
+		LESS_TERMCAP_mb=$(printf "\e[1;37m") \
+		LESS_TERMCAP_md=$(printf "\e[1;37m") \
+		LESS_TERMCAP_me=$(printf "\e[0m") \
+		LESS_TERMCAP_se=$(printf "\e[0m") \
+		LESS_TERMCAP_so=$(printf "\e[1;47;30m") \
+		LESS_TERMCAP_ue=$(printf "\e[0m") \
+		LESS_TERMCAP_us=$(printf "\e[0;36m") \
+		man "$@"
+}
 
 # Bash prompt tuning {{{
 case $(id -u) in
 	0)
 		# root
-		export STARTCOLOUR='\[\e[1;31m\]';
+		export STARTCOLOR='\[\e[1;31m\]';
 		;;
 	*)
 		# user
-		export STARTCOLOUR='\[\e[0;32m\]';
+		export STARTCOLOR='\[\e[0;32m\]';
 		;;
 esac
-export ENDCOLOUR="\[\e[0m\]"
+export ENDCOLOR="\[\e[0m\]"
 
-PS1='\[\e[0;36m\][\t] \[\e[0;37m\]\u@\h:'$STARTCOLOUR'$PWD'$ENDCOLOUR' \[\e[0;35m\]$(vcprompt)\[\e[0m\]\$ ' 
+PS1='\[\e[0;36m\][\t] \[\e[0;37m\]\u@\h:'$STARTCOLOR'$PWD'$ENDCOLOR' \[\e[0;35m\]$(vcprompt)\[\e[0m\]\$ ' 
 #}}}
-
-# Directory colours {{{
+# Directory colors {{{
 if  [[ $OS == "linux" ]]
 then
 	export LS_COLORS='di=93:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=91:*.rb=90'
@@ -97,5 +107,6 @@ else
 	export LSCOLORS="dxfxcxdxbxegedabagacad"
 fi
 #}}}
+# }}}
 
 # vim: set ts=4 sw=4 noexpandtab fdm=marker: #

@@ -1,3 +1,5 @@
+# some aliases were taken from http://hayne.net/MacDev/Bash/aliases.bash
+
 # reload bash to get new settings to work
 alias reloadbash='source ~/.bash_profile'
 
@@ -24,6 +26,7 @@ alias e="vim"
 alias se="sudo vim"
 alias ..="cd .."
 alias ...="cd .. ; cd .."
+alias ....="cd ..; cd ..; cd .."
 alias rrf="rm -rf"
 alias cpr="cp -r"
 # git aliases
@@ -33,13 +36,20 @@ alias gb="git branch "
 alias gc="git commit"
 alias gd="git diff"
 alias go="git checkout "
-# auto-sudo for some commands {{{
+# svn aliases
+alias sup="svn up"
+alias sad="svn add"
+alias ss="svn status"
+alias sc="svn commit"
+alias sd="svn diff"
+# auto-sudo for some commands
 alias port="sudo port"
 alias pecl="sudo pecl"
 alias pear="sudo pear"
 alias cpan="sudo cpan"
 alias apt-get="sudo apt-get"
-#}}}
+# rm_ds: removes all .DS_Store file from the current dir and below
+alias rm_ds='find . -name .DS_Store -exec rm {} \;'
 #}}}
 
 # OS X aliases {{{
@@ -49,36 +59,39 @@ then
 	alias cleanfirefox="find ~/Library/Application\ Support/Firefox/Profiles -name '*.sqlite' -exec sqlite3 {} VACUUM \;}"
 
 	# Search for a file using Spotlight's metadata
-	function locatemd { mdfind "kMDItemDisplayName == '$@'wc"; }
+	function locatemd { mdfind "kMDItemDisplayName == '$@'wc" ; }
 
-	# Clean "open with" menu in OS X 10.5+
-	function cleanow {
-		rm ~/Library/Preferences/com.apple.LaunchServices.*;
-		/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r  -domain local -domain system -domain user;
+	# clean_open_with: clean "open with" menu in OS X 10.5+
+	function clean_open_with {
+		rm ~/Library/Preferences/com.apple.LaunchServices.* ;
+		/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system -domain user ;
 	}
 
-	function clean_asl {
-		sudo rm -f /private/var/log/asl/*.asl;
-	}
+	function clean_asl { sudo rm -f /private/var/log/asl/*.asl ; }
+
+	# dict: lookup a word with Dictionary.app
+	dict () { open dict:///"$@" ; }
 fi
 #}}}
 
 # Development aliases {{{
-ngev() {
-	vim /usr/local/logs/nginx-$1-error.log
-}
-
-nget() {
-	tail /usr/local/logs/nginx-$1-error.log
-}
 
 # count connections by ip
-alias connip="netstat -ntu | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n"
+alias ccip="netstat -ntu | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n"
+
 # }}}
 
-# History find
-hf() {
-	grep "$@" ~/.bash_history
-}
+# Search {{{
+
+# ff:  to find a file under the current directory
+ff () { /usr/bin/find . -name "$@" ; }
+# ffs: to find a file whose name starts with a given string
+ffs () { /usr/bin/find . -name "$@"'*' ; }
+# ffe: to find a file whose name ends with a given string
+ffe () { /usr/bin/find . -name '*'"$@" ; }
+# fh: to find a record in history
+fh() { grep "$@" ~/.bash_history ; }
+
+# }}}
 
 #  vim: set ts=4 sw=4 noexpandtab ft=sh fdm=marker: #
