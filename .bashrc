@@ -29,9 +29,9 @@ then
 	export CATALINA_HOME=/Users/jahson/sources/apache-tomcat-6.0.18-src/output/build
 	export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
 	export CLASSPATH=./
-	# PHP stuff - to resolve autoconf and autoheader problems
-	export PHP_AUTOCONF='autoconf213'
-	export PHP_AUTOHEADER='autoheader213'
+	# PHP stuff to resolve autoconf and autoheader problems
+	# export PHP_AUTOCONF='autoconf213'
+	# export PHP_AUTOHEADER='autoheader213'
 fi
 #}}}
 
@@ -104,7 +104,8 @@ if  [[ $OS == "linux" ]]
 then
 	export LS_COLORS='di=93:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=91:*.rb=90'
 else
-	export LSCOLORS="dxfxcxdxbxegedabagacad"
+	# export LSCOLORS="dxfxcxdxbxegedabagacad"
+	export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 fi
 #}}}
 # }}}
