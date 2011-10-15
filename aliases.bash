@@ -79,6 +79,10 @@ fi
 # count connections by ip
 alias ccip="netstat -ntu | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n"
 
+# Compare remote file with local file, $1 is user@host, $2 is remote file, $3 - local
+# file
+rdiff () { ssh $1 cat $2 | diff $3 - ; }
+
 # }}}
 
 # Search {{{
