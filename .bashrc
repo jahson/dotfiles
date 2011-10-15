@@ -41,13 +41,13 @@ complete -o dirnames -d cd
 if [ -f /opt/local/etc/bash_completion ]; then
 	. /opt/local/etc/bash_completion
 fi
-if [[ -f ~/.completion.git.sh ]]
+if [[ -f ~/dotfiles/git.completion ]]
 then
-	source ~/.completion.git.sh
+	source ~/dotfiles/git.completion
 fi
-if [[ -f ~/.completion.svn.sh ]]
+if [[ -f ~/dotfiles/svn.completion ]]
 then
-	source ~/.completion.svn.sh
+	source ~/dotfiles/svn.completion
 fi
 #}}}
 # Load aliases script {{{
