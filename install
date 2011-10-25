@@ -1,0 +1,51 @@
+#!/bin/sh
+
+has_warnings=0
+dir=$PWD/`dirname $0`
+
+echo ""
+echo $'\033[0;33mINSTALLING DOTFILES\033[0m'
+echo ""
+
+if [ ! -h ~/.bash_profile ]; then
+    ln -s $dir/bash_profile ~/.bash_profile
+    echo "Created link to ~/.bash_profile"
+else
+    has_warnings=1
+    echo $'\033[0;31mWARNING: ~/.bash_profile already exists\033[0m'
+fi
+
+if [ ! -h ~/.bashrc ]; then
+    ln -s $dir/bashrc ~/.bashrc
+    echo "Created link to ~/.bashrc"
+else
+    has_warnings=1
+    echo $'\033[0;31mWARNING: ~/.bashrc already exists\033[0m'
+fi
+
+if [ ! -h ~/.inputrc ]; then
+    ln -s $dir/inputrc ~/.inputrc
+    echo "Created link to ~/.inputrc"
+else
+    has_warnings=1
+    echo $'\033[0;31mWARNING: ~/.inputrc already exists\033[0m'
+fi
+
+if [ ! -h ~/.gitconfig ]; then
+    ln -s $dir/gitconfig ~/.gitconfig
+    echo "Created link to ~/.gitconfig"
+else
+    has_warnings=1
+    echo $'\033[0;31mWARNING: ~/.gitconfig already exists\033[0m'
+fi
+
+if  ((has_warnings==1)); then
+    echo ""
+    echo $'HINT:\tYou should remove or rename files with warnings'
+    echo $'\tand run this script again.'
+else
+    echo ""
+    echo $'\033[0;32mINSTALLATION SUCCESSFULL\033[0m'
+fi
+
+echo ""
