@@ -39,7 +39,7 @@ fi
 complete -o dirnames -d cd
 
 if [ -f /opt/local/etc/bash_completion ]; then
-	. /opt/local/etc/bash_completion
+	source /opt/local/etc/bash_completion
 fi
 if [[ -f ~/dotfiles/git.completion ]]
 then
@@ -51,9 +51,9 @@ then
 fi
 #}}}
 # Load aliases script {{{
-if [[ -f ~/.aliases.bash ]]
+if [[ -f ~/dotfiles/aliases.bash ]]
 then
-	. ~/.aliases.bash
+	source ~/dotfiles/aliases.bash
 fi
 #}}}
 
