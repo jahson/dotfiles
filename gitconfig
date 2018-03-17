@@ -3,9 +3,11 @@
 	email = jjahson@gmail.com
 [core]
 	editor = vim
-	autocrlf = input
-	safecrlf = true
-	excludesfile = ~/.gitignore_global
+	autocrlf = false
+	excludesfile = /Users/jahson/.gitignore_global
+	# Make `git rebase` safer on OS X
+	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+	trustctime = false
 [diff]
 	tool = vimdiff
 [merge]
