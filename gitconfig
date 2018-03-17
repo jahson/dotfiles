@@ -1,6 +1,8 @@
 [user]
 	name = jahson
 	email = jjahson@gmail.com
+[push]
+	default = simple
 [core]
 	editor = vim
 	autocrlf = false
