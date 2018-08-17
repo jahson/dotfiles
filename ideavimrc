@@ -1,0 +1,70 @@
+let mapleader = ' '
+
+set incsearch    " show matches while typing
+set hlsearch     " hightlight search results
+set ignorecase   " ignore case in search pattern
+set smartcase    " override ignorecase if search pattern contains uppercase letters
+set scrolloff=5 " N lines above/below cursor when scrolling
+
+" use system clipboard
+set clipboard=unnamed
+
+inoremap jk <Esc>
+vnoremap jk <Esc>
+
+nnoremap Y y$
+
+nnoremap gcc :action CommentByLineComment<cr>
+
+nnoremap <leader>ff :action FindInPath<cr>
+nnoremap <leader>fu :action FindUsages<cr>
+nnoremap <leader>su :action ShowUsages<cr>
+nnoremap <leader>oi :action OptimizeImports<cr>
+nnoremap <leader>re :action RenameElement<cr>
+nnoremap <leader>rf :action RenameFile<cr>
+nnoremap <leader>rt :action Refactorings.QuickListPopupAction<cr>
+nnoremap <leader>mv :action ActivateMavenProjectsToolWindow<cr>
+nnoremap <leader>dc :action ChooseDebugConfiguration<cr>
+nnoremap <leader>rc :action ChooseRunConfiguration<cr>
+nnoremap <leader>q  :action CloseActiveTab<cr>
+nnoremap <leader>gi :action GotoImplementation<cr>
+nnoremap <leader>gs :action GotoSuperMethod<cr>
+nnoremap <leader>gd :action GotoDeclaration<cr>
+nnoremap <leader>gb :action Back<cr>
+nnoremap <leader>gf :action Forward<cr>
+
+" windows
+nnoremap <c-l> <c-w>l
+nnoremap <c-j> <c-w>j
+nnoremap <c-h> <c-w>h
+nnoremap <c-k> <c-w>k
+" tabs
+nnoremap <a-h> gT
+nnoremap <a-l> gt
+
+nnoremap <leader><cr> :nohlsearch<cr>
+
+" jump to beginning / end of lines easier
+noremap H ^
+noremap L $
+
+" Create newlines without entering insert mode
+nnoremap go o<Esc>k
+nnoremap gO O<Esc>j
+
+set surround
+
+" " unimpaired mappings
+" nnoremap [<space> O<esc>j
+" nnoremap ]<space> o<esc>k
+" nnoremap [q :action PreviousOccurence<cr>
+" nnoremap ]q :action NextOccurence<cr>
+" nnoremap [m :action MethodUp<cr>
+" nnoremap ]m :action MethodDown<cr>
+" nnoremap [c :action VcsShowPrevChangeMarker<cr>
+" nnoremap ]c :action VcsShowNextChangeMarker<cr>
+
+" " built in search looks better
+" nnoremap / :action Find<cr>
+" " but preserve ideavim search
+" nnoremap g/ /
