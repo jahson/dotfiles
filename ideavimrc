@@ -9,8 +9,8 @@ set scrolloff=5 " N lines above/below cursor when scrolling
 " use system clipboard
 set clipboard=unnamed
 
-inoremap jk <Esc>
-vnoremap jk <Esc>
+inoremap ,. <Esc>
+vnoremap ,. <Esc>
 
 nnoremap Y y$
 
@@ -68,3 +68,5 @@ set surround
 " nnoremap / :action Find<cr>
 " " but preserve ideavim search
 " nnoremap g/ /
+
+set iskeyword=@,48-57,_,192-255,?,-,*,!,+,/,=,<,>,.,:,$
