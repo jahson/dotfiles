@@ -1,15 +1,4 @@
 
-
-#
-# User configuration sourced by interactive shells
-#
-
-# Change default zim location
-export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
-
-# Start zim
-[[ -s ${ZIM_HOME}/init.zsh ]] && source ${ZIM_HOME}/init.zsh
-
 #
 # User configuration sourced by interactive shells
 #
@@ -30,7 +19,7 @@ _load_settings() {
     if [ -d "$_dir/pre" ]; then
       for config in "$_dir"/pre/**/*(N-.); do
         . $config
-			done
+      done
     fi
 
     for config in "$_dir"/**/*(N-.); do
