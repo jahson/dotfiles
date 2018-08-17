@@ -1,0 +1,2 @@
+# ffe: to find a file whose name ends with a given string
+ffe () { /usr/bin/find . -name '*'"$@" ; }

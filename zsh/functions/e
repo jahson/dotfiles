@@ -1,0 +1,10 @@
+# edit saving session
+function e() {
+  if test $# -gt 0; then
+    env $EDITOR "$@"
+  elif test -f Session.vim; then
+    env $EDITOR -S
+  else
+    env $EDITOR -c Obsession
+  fi
+}

@@ -1,0 +1,2 @@
+# ff:  to find a file under the current directory
+ff () { /usr/bin/find . -name "$@" ; }
