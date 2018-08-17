@@ -8,8 +8,7 @@ NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 PATH="$NPM_PACKAGES/bin:$PATH"
 
 # Go
-export GOPATH=$HOME/golang
-PATH=$PATH:$GOPATH/bin
+export GOPATH="${HOME}/work/go"
 
 # Composer
 PATH=$HOME/.composer/vendor/bin:$PATH
