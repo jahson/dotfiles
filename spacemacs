@@ -51,9 +51,6 @@ This function should only modify configuration layer settings."
                       auto-completion-complete-with-key-sequence-delay 0.2
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-snippets-in-popup t)
-     ;; (wakatime :variables
-     ;;           wakatime-api-key "61e4f288-a0e7-4db3-9c93-5db516e3e0cb"
-     ;;           wakatime-cli-path "/usr/local/bin/wakatime")
      osx
      better-defaults
      docker
