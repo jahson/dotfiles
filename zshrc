@@ -79,11 +79,6 @@ bindkey '' edit-command-line
 # file rename magick
 bindkey "^[m" copy-prev-shell-word
 
-# Start zim
-[[ -s ${ZIM_HOME}/init.zsh ]] && source ${ZIM_HOME}/init.zsh
-# experimental
-# [[ -f ~/zsh-tab-colors.plugin.zsh ]] && source ~/zsh-tab-colors.plugin.zsh
-[[ -f ~/you-should-use.plugin.zsh ]] && source ~/you-should-use.plugin.zsh
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 # fzf
