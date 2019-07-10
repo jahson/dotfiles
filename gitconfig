@@ -1,6 +1,6 @@
-[user]
-	name = jahson
-	email = jjahson@gmail.com
+[includeIf "gitdir:~/"]
+    path = ~/.gitconfig.personal
+
 [push]
 	default = simple
 [core]
