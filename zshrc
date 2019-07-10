@@ -89,7 +89,3 @@ bindkey "^[m" copy-prev-shell-word
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/jahson/.sdkman"
-[[ -s "/Users/jahson/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jahson/.sdkman/bin/sdkman-init.sh"
