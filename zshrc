@@ -50,7 +50,8 @@ _load_settings() {
 }
 _load_settings "$HOME/.zsh/configs"
 
-# Vi mode delay in hundredths of a second after the <ESC> key (default 0.4)
+# The time the shell waits, in hundredths of seconds, for another key
+# to be pressed when reading bound multi-character sequences.
 export KEYTIMEOUT=1
 
 export SHELL=/bin/zsh
