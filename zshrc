@@ -83,6 +83,9 @@ bindkey '' edit-command-line
 # Bind Opt-M to copy previous shell word
 bindkey "^[m" copy-prev-shell-word
 
+# direnv
+eval "$(direnv hook zsh)"
+
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 # fzf
