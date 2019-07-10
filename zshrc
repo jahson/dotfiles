@@ -1,3 +1,6 @@
+# Uncomment the line below for profiling to start
+# to see the profiling results, run `zprof` after shell load
+# zmodload zsh/zprof
 
 #
 # User configuration sourced by interactive shells
