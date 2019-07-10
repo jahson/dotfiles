@@ -93,3 +93,5 @@
 	autostash = true
 [pull]
 	ff = only
+[commit]
+	gpgsign = true
