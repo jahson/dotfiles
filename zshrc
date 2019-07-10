@@ -80,7 +80,7 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '' edit-command-line
 
-# file rename magick
+# Bind Opt-M to copy previous shell word
 bindkey "^[m" copy-prev-shell-word
 
 # aliases
