@@ -1,0 +1,6 @@
+# switch jdk
+function switch_java() {
+  echo "Switching to Java $1"
+	export JAVA_HOME=`/usr/libexec/java_home -v $1`
+    java -version
+}
