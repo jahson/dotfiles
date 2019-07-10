@@ -1,6 +1,9 @@
 # Homebrew
-PATH="$(brew --prefix coreutils)/libexec/gnubin:$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
-MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+# NB: Calling the `brew --prefix` is slow
+PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:$PATH"
+# Homebrew: Prefer GNU utils
+PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # npm & node
 NPM_PACKAGES=$HOME/.npm-packages
