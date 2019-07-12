@@ -54,28 +54,7 @@ _load_settings "$HOME/.zsh/configs"
 # to be pressed when reading bound multi-character sequences.
 export KEYTIMEOUT=1
 
-export SHELL=/bin/zsh
-
-# http://unix.stackexchange.com/questions/197839/why-does-exporting-vim-as-editor-in-zsh-disable-keyboard-shortcuts
-set -o emacs
-
-bindkey "^[[3~" delete-char
-
-# bind UP and DOWN arrow keys
-# zmodload zsh/terminfo
-# bindkey "$terminfo[kcuu1]" history-substring-search-up
-# bindkey "$terminfo[kcud1]" history-substring-search-down
-
-# bind UP and DOWN arrow keys (compatibility fallback
-# for Ubuntu 12.04, Fedora 21, and MacOSX 10.9 users)
-# bindkey '^[[A' history-substring-search-up
-# bindkey '^[[B' history-substring-search-down
-
-# bind P and N for EMACS mode
-# bindkey -M emacs '^P' history-substring-search-up
-# bindkey -M emacs '^N' history-substring-search-down
-
-# Edit the current command line in $EDITOR
+# Bind Ctrl-X Ctrl-E to edit the current command line in $EDITOR
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '' edit-command-line
