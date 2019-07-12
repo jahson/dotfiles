@@ -57,7 +57,9 @@ This function should only modify configuration layer settings."
                       auto-completion-enable-sort-by-usage t
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-snippets-in-popup t)
-     osx
+     ;; This layer globally defines common OSX key bindings.
+     ;; https://github.com/syl20bnr/spacemacs/blob/develop/layers/+os/osx/README.org#key-bindings
+     ;; osx
      better-defaults
      docker
      react
@@ -71,35 +73,53 @@ This function should only modify configuration layer settings."
      ;; clojure mode
      (clojure :variables
               clojure-enable-clj-refactor t)
-     ;; add the Joker linter
-     ;; clojure-lint
-     ;; show commands as you type
+     ;; This layer adds a handy command demonstration mode to Spacemacs.
+     ;; https://github.com/syl20bnr/spacemacs/blob/develop/layers/+tools/command-log/README.org#key-bindings
      command-log
      html
      javascript
      coffeescript
-     ;; typescript
      yaml
-     ;; open Magit client full screen
      (git :variables
+          ;; open Magit client full screen
           git-magit-status-fullscreen t
           git-gutter-use-fringe t)
      treemacs
+     ;; This layer adds on the fly syntax checking to all supported language layers.
+     ;; https://github.com/syl20bnr/spacemacs/blob/develop/layers/+checkers/syntax-checking/README.org#key-bindings
      syntax-checking
      (version-control :variables
                       version-control-diff-tool 'diff-hl
                       version-control-global-margin t)
+     ;; This layer replaces evil-nerd-commenter with evil-commentary for those
+     ;; who prefer the behaviour of vim-commentary.
+     ;; https://github.com/syl20bnr/spacemacs/blob/develop/layers/+vim/evil-commentary/README.org#key-bindings
      evil-commentary
-     ;; evil-cleverparens
+     ;; This layer uses imenu-list to show the current buffer’s index in a side bar.
+     ;; This is similar to `SPC j i` but displayed in a persistent sidebar
+     ;; instead of a completion buffer.
+     ;; https://github.com/syl20bnr/spacemacs/blob/develop/layers/+tools/imenu-list/README.org#key-bindings
      imenu-list
-     ;; super-save
-     vinegar
-     imenu-list
-     themes-megapack
-     ;; (themes-megapack :packages (zenburn base16-grayscale-dark base16-grayscale-light))
+
+     ;; It is based on tpope’s vinegar.vim, simplifying dired with a limited number of details
+     ;; and exposing the `-` command in all buffers to enter dired.
+     ;; https://github.com/syl20bnr/spacemacs/blob/develop/layers/+vim/vinegar/README.org#key-bindings
+     (vinegar :variables
+              vinegar-reuse-dired-buffer t)
+
+     ;; A pack of various themes
+     ;; https://github.com/syl20bnr/spacemacs/tree/develop/layers/%2Bthemes/themes-megapack
+     (themes-megapack :packages
+                      (doom-themes))
+
+     ;;
      ;; trying
+     ;;
+
+     ;; Deft is an Emacs mode for quickly browsing, filtering, and editing
+     ;; directories of plain text notes, inspired by Notational Velocity.
+     ;; https://github.com/syl20bnr/spacemacs/blob/develop/layers/+readers/deft/README.org#key-bindings
      deft
-     semantic
      )
 
    ;; List of additional packages that will be installed without being
@@ -243,9 +263,8 @@ It should only modify the values of Spacemacs settings."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
                          doom-one
-                         ;; nimbus
+                         doom-one-light
                          spacemacs-dark
-                         ;; spacemacs-light
                          )
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
@@ -255,7 +274,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(doom :separator nil :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(doom :separator nil :separator-scale 1.0)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
