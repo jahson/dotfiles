@@ -1,1 +1,1 @@
-skip_global_compinit=1
+export LANG=${LANG:-en_US.UTF-8}
