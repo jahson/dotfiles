@@ -69,6 +69,9 @@ This function should only modify configuration layer settings."
             shell-default-height 33
             shell-default-position 'bottom)
      shell-scripts
+     ;; This layer adds support for editing Lua.
+     ;; https://github.com/syl20bnr/spacemacs/tree/develop/layers/%2Blang/lua#key-bindings
+     lua
      emacs-lisp
      ;; clojure mode
      (clojure :variables
