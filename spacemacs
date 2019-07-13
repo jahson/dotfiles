@@ -136,6 +136,7 @@ This function should only modify configuration layer settings."
    '(
      flycheck-clj-kondo
      flycheck-joker
+     keyfreq
      )
 
    ;; A list of packages that cannot be updated.
@@ -619,10 +620,12 @@ before packages are loaded."
   (put 'ANY 'clojure-indent-function 2)
   (put 'context 'clojure-indent-function 2)
   (put 'fn-traced 'clojure-indent-function :defn)
-  (dolist (mode-hook '(coffee-mode-hook))
-    (add-hook mode-hook
-              (lambda ()
-                (spacemacs/toggle-auto-completion-on))))
+  ;; keyfreq
+  ;; http://blog.binchen.org/posts/how-to-be-extremely-efficient-in-emacs.html
+  (setq keyfreq-excluded-commands
+        '(self-insert-command))
+  (keyfreq-mode 1)
+  (keyfreq-autosave-mode 1)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
