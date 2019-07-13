@@ -558,21 +558,14 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (add-hook 'cider-repl-mode-hook '(lambda () (setq scroll-conservatively 101)))
   ;; use zsh for default multi-term shell
   (setq multi-term-program "/usr/bin/zsh")
   ;; diff-hl - diff hightlights in right gutter as you type
   (diff-hl-flydiff-mode)
-  ;; temporary fix for counsel projectile
-  ;; (setq projectile-keymap-prefix (kbd "C-c C-p"))
-  ;; (add-to-list 'flycheck-global-modes 'clojure-mode)
-  ;; (add-to-list 'flycheck-global-modes 'clojurescript-mode)
-  ;; (spacemacs/toggle-evil-cleverparens-on)
-  ;; (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
-
   ;; In clojure-mode, treat hyphenated words as a single word.
-  (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
-
+  (add-hook 'clojure-mode-hook
+            (lambda ()
+              (modify-syntax-entry ?- "w")))
   ;; enable safe structural editing in evil (clojure layer - evil-cleverparens)
   (spacemacs/toggle-evil-safe-lisp-structural-editing-on-register-hook-clojure-mode)
   ;; pretty print in clojure to use the fast idiomatic pretty-printer. this is approximately 5-10x faster than clojure.core/pprint
@@ -580,25 +573,24 @@ before packages are loaded."
   ;; Indentation of function forms
   ;; https://github.com/clojure-emacs/clojure-mode#indentation-of-function-forms
   (setq clojure-indent-style 'align-arguments)
-
   ;; TAB will alternate between parents
   (define-key evil-normal-state-map (kbd "TAB") 'evil-jump-item)
   ;; Set escape keybinding to "jk"
   ;; (setq-default evil-escape-key-sequence "jk")
+  ;; I like straight separators in powerline
   (setq powerline-default-separator nil)
-  ;; (spaceline-compile)
-  ;; (turn-on-fci-mode) ; fill column indicator
+  ;; Enable fill-column-indicator for programming modes
   (add-hook 'prog-mode-hook
             (lambda ()
               ;; Enable fill column indicator
               (fci-mode t)
               ;; Set fill column to 100 chars
               (setq fill-column 100)))
-  (add-hook 'prog-mode-hook (lambda () (spacemacs/toggle-line-numbers-off)))
-
-  ;; (add-to-list 'auto-mode-alist '("\\.rjade\\'" . jade-mode))
-  ;; (golden-ratio-mode 1)
-
+  ;; I don't need a line numbers most of the time
+  (add-hook 'prog-mode-hook
+            (lambda ()
+              (spacemacs/toggle-line-numbers-off)))
+  ;; clj-kondo and joker
   (use-package clojure-mode
     :ensure t
     :config
@@ -611,6 +603,7 @@ before packages are loaded."
                         (clj-kondo-cljc . clojure-joker)
                         (clj-kondo-edn . edn-joker)))
       (flycheck-add-next-checker (car checkers) (cons 'error (cdr checkers)))))
+  ;; Set up preferred formatting for macros
   (put 'defroutes 'clojure-indent-function :defn)
   (put 'GET 'clojure-indent-function 2)
   (put 'POST 'clojure-indent-function 2)
@@ -699,7 +692,7 @@ This function is called at the very end of Spacemacs initialization."
  '(objed-cursor-color "#cc6666")
  '(package-selected-packages
    (quote
-    (xterm-color tide typescript-mode shell-pop protobuf-mode multi-term insert-shebang fish-mode eshell-z eshell-prompt-extras esh-help dockerfile-mode docker tablist docker-tramp company-shell wgrep powerline smex json-snatcher json-reformat ivy-hydra parent-mode gitignore-mode fringe-helper git-gutter+ git-gutter flx ghub let-alist anzu goto-chg undo-tree counsel-projectile counsel swiper ivy web-completion-data dash-functional pos-tip inflections edn peg eval-sexp-fu spinner pkg-info epl popup diminish seq paredit f s winum unfill solarized-theme madhat2r-theme fuzzy org packed auto-complete evil multiple-cursors avy dash markdown-mode autothemer clojure-mode bind-key tern iedit bind-map highlight flycheck company request projectile haml-mode which-key web-mode spacemacs-theme pug-mode phoenix-dark-pink-theme monokai-theme moe-theme info+ hungry-delete helm-ag google-translate git-link evil-matchit evil-magit aggressive-indent ace-link cider smartparens helm helm-core yasnippet skewer-mode js2-mode magit magit-popup git-commit with-editor hydra zonokai-theme zenburn-theme zen-and-art-theme yaml-mode ws-butler window-numbering web-beautify wakatime-mode volatile-highlights vi-tilde-fringe uuidgen use-package underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit sunny-day-theme sublime-themes subatomic256-theme subatomic-theme sql-indent spaceline spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode simple-httpd seti-theme scss-mode sass-mode reverse-theme reveal-in-osx-finder restart-emacs rainbow-delimiters railscasts-theme queue quelpa purple-haze-theme professional-theme popwin planet-theme phoenix-dark-mono-theme persp-mode pcre2el pbcopy pastels-on-dark-theme paradox osx-trash osx-dictionary orgit organic-green-theme org-plus-contrib org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme niflheim-theme neotree naquadah-theme mwim mustang-theme move-text monochrome-theme molokai-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-gitflow macrostep lush-theme lorem-ipsum livid-mode linum-relative link-hint light-soap-theme less-css-mode launchctl json-mode js2-refactor js-doc jbeans-theme jazz-theme ir-black-theme inkpot-theme indent-guide ido-vertical-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt heroku-theme hemisu-theme help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe git-gutter-fringe+ gh-md gandalf-theme flycheck-pos-tip flx-ido flatui-theme flatland-theme firebelly-theme fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu espresso-theme emmet-mode elisp-slime-nav dumb-jump dracula-theme django-theme diff-hl darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme company-web company-tern company-statistics company-quickhelp column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized coffee-mode clues-theme clojure-snippets clj-refactor clean-aindent-mode cider-eval-sexp-fu cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme base16-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-compile async apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme adaptive-wrap ace-window ace-jump-helm-line ac-ispell)))
+    (helm-gtags ggtags counsel-gtags company-lua lua-mode xterm-color tide typescript-mode shell-pop protobuf-mode multi-term insert-shebang fish-mode eshell-z eshell-prompt-extras esh-help dockerfile-mode docker tablist docker-tramp company-shell wgrep powerline smex json-snatcher json-reformat ivy-hydra parent-mode gitignore-mode fringe-helper git-gutter+ git-gutter flx ghub let-alist anzu goto-chg undo-tree counsel-projectile counsel swiper ivy web-completion-data dash-functional pos-tip inflections edn peg eval-sexp-fu spinner pkg-info epl popup diminish seq paredit f s winum unfill solarized-theme madhat2r-theme fuzzy org packed auto-complete evil multiple-cursors avy dash markdown-mode autothemer clojure-mode bind-key tern iedit bind-map highlight flycheck company request projectile haml-mode which-key web-mode spacemacs-theme pug-mode phoenix-dark-pink-theme monokai-theme moe-theme info+ hungry-delete helm-ag google-translate git-link evil-matchit evil-magit aggressive-indent ace-link cider smartparens helm helm-core yasnippet skewer-mode js2-mode magit magit-popup git-commit with-editor hydra zonokai-theme zenburn-theme zen-and-art-theme yaml-mode ws-butler window-numbering web-beautify wakatime-mode volatile-highlights vi-tilde-fringe uuidgen use-package underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit sunny-day-theme sublime-themes subatomic256-theme subatomic-theme sql-indent spaceline spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode simple-httpd seti-theme scss-mode sass-mode reverse-theme reveal-in-osx-finder restart-emacs rainbow-delimiters railscasts-theme queue quelpa purple-haze-theme professional-theme popwin planet-theme phoenix-dark-mono-theme persp-mode pcre2el pbcopy pastels-on-dark-theme paradox osx-trash osx-dictionary orgit organic-green-theme org-plus-contrib org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme niflheim-theme neotree naquadah-theme mwim mustang-theme move-text monochrome-theme molokai-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-gitflow macrostep lush-theme lorem-ipsum livid-mode linum-relative link-hint light-soap-theme less-css-mode launchctl json-mode js2-refactor js-doc jbeans-theme jazz-theme ir-black-theme inkpot-theme indent-guide ido-vertical-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt heroku-theme hemisu-theme help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe git-gutter-fringe+ gh-md gandalf-theme flycheck-pos-tip flx-ido flatui-theme flatland-theme firebelly-theme fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu espresso-theme emmet-mode elisp-slime-nav dumb-jump dracula-theme django-theme diff-hl darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme company-web company-tern company-statistics company-quickhelp column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized coffee-mode clues-theme clojure-snippets clj-refactor clean-aindent-mode cider-eval-sexp-fu cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme base16-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-compile async apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme adaptive-wrap ace-window ace-jump-helm-line ac-ispell)))
  '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#262626")))
  '(safe-local-variable-values
    (quote
@@ -713,5 +706,5 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Operator Mono" :foundry "nil" :slant normal :weight normal :height 160 :width normal)))))
+ )
 )
