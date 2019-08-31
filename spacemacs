@@ -548,6 +548,9 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  ;; see https://emacs.stackexchange.com/questions/28736/emacs-pointcursor-movement-lag/28746#28746
+  ;; Non-nil means to automatically adjust ‘window-vscroll’ to view tall lines.
+  (setq auto-window-vscroll nil)
   ;; enable company ("complete anything") mode in all buffers
   (global-company-mode)
   ;; use zsh for default multi-term shell
