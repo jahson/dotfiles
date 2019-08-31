@@ -12,3 +12,5 @@ Session.vim
 # IntelliJ
 *.iml
 .idea
+# clojure
+.clj-kondo
