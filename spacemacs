@@ -135,7 +135,6 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages
    '(
      flycheck-clj-kondo
-     flycheck-joker
      keyfreq
      )
 
@@ -590,19 +589,11 @@ before packages are loaded."
   (add-hook 'prog-mode-hook
             (lambda ()
               (spacemacs/toggle-line-numbers-off)))
-  ;; clj-kondo and joker
+  ;; clj-kondo
   (use-package clojure-mode
     :ensure t
     :config
-    (require 'flycheck-joker)
-    (require 'flycheck-clj-kondo)
-    (dolist (checker '(clj-kondo-clj clj-kondo-cljs clj-kondo-cljc clj-kondo-edn))
-      (setq flycheck-checkers (cons checker (delq checker flycheck-checkers))))
-    (dolist (checkers '((clj-kondo-clj . clojure-joker)
-                        (clj-kondo-cljs . clojurescript-joker)
-                        (clj-kondo-cljc . clojure-joker)
-                        (clj-kondo-edn . edn-joker)))
-      (flycheck-add-next-checker (car checkers) (cons 'error (cdr checkers)))))
+    (require 'flycheck-clj-kondo))
   ;; Set up preferred formatting for macros
   (put 'defroutes 'clojure-indent-function :defn)
   (put 'GET 'clojure-indent-function 2)
