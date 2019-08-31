@@ -548,6 +548,8 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  ;; enable company ("complete anything") mode in all buffers
+  (global-company-mode)
   ;; use zsh for default multi-term shell
   (setq multi-term-program "/usr/bin/zsh")
   ;; diff-hl - diff hightlights in right gutter as you type
