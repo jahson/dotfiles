@@ -552,10 +552,9 @@ before packages are loaded."
   (setq multi-term-program "/usr/bin/zsh")
   ;; diff-hl - diff hightlights in right gutter as you type
   (diff-hl-flydiff-mode)
-  ;; In clojure-mode, treat hyphenated words as a single word.
-  (add-hook 'clojure-mode-hook
-            (lambda ()
-              (modify-syntax-entry ?- "w")))
+  ;; In clojure-mode, add the dash and the colon to the 'word', e.g. :keyword-here
+  (add-hook 'clojure-mode-hook (lambda () (modify-syntax-entry ?- "w")))
+  (add-hook 'clojure-mode-hook (lambda () (modify-syntax-entry ?: "w")))
   ;; enable safe structural editing in evil (clojure layer - evil-cleverparens)
   (spacemacs/toggle-evil-safe-lisp-structural-editing-on-register-hook-clojure-mode)
   ;; pretty print in clojure to use the fast idiomatic pretty-printer. this is approximately 5-10x faster than clojure.core/pprint
